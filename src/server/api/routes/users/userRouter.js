@@ -7,15 +7,19 @@ const router = express.Router({ mergeParams: true });
 
 // ENDPOINT: /api/users/ :GET
 router.get('/', (req, res, next) => {
-    sql.query("SELECT * FROM `final-project`.users;", function (err, result) {             
-        if(err) {
-            console.log("error: ", err);
-        }
-        else{
-            res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(result));
-        }
-    });
+  res.setHeader('Content-Type', 'application/json');
+  sql.query("SELECT * FROM `lesson2`.user;", function(err, result) {
+    if (err) {
+      console.error("error: ", err);
+      res.status(500);
+      res.end(JSON.stringify({
+        message:"A SQL error occurred.",
+        error: err.sqlMessage
+      }));
+    } else {
+      res.end(JSON.stringify(result));
+    }
+  });
 });
 
 // ENDPOINT: /api/users/ :POST
