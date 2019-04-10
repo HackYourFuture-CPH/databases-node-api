@@ -1,7 +1,7 @@
 {
-  "name": "class07-fabric-project",
+  "name": "databases-node-api",
   "version": "1.0.0",
-  "description": "Basic node structure using express",
+  "description": "Homework for last class in sql. Connecting sql to node",
   "main": "index.js",
   "engines": {
     "node": "8.11.1"

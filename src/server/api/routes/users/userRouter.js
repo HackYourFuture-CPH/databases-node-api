@@ -5,31 +5,61 @@ const sql = require('./../../../db');
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-// ENDPOINT: /api/users/ :GET
-router.get('/', (req, res, next) => {
-  res.setHeader('Content-Type', 'application/json');
-  sql.query("SELECT * FROM `lesson2`.user;", function(err, result) {
-    if (err) {
-      console.error("error: ", err);
-      res.status(500);
-      res.end(JSON.stringify({
-        message:"A SQL error occurred.",
-        error: err.sqlMessage
-      }));
-    } else {
-      res.end(JSON.stringify(result));
-    }
-  });
+function handleError(res, error) {
+    res.status(500);
+    res.end(JSON.stringify({
+        message: "A SQL error occurred.",
+        error: error.sqlMessage
+    }));
+}
+
+
+router.get('/test', (req, res, next) => {
+    // body requests
+    console.log(req.body);
+    // query parameters
+    console.log(req.query);
+    sql.query(`SELECT * FROM \`database-node-api\`.users;`, function (error, result) {
+        res.setHeader('Content-Type', 'application/json');
+        if (error) return handleError(res, error);
+        res.end(JSON.stringify(result));
+    });
 });
 
-// ENDPOINT: /api/users/ :POST
+
 router.post('/', (req, res, next) => {
-
+    // Create the sql that inserts a new user into the database. The data is gotten from the req.body
+    // Find the fields from the database-node-api.sql
 });
 
-// ENDPOINT: /api/users/ :PATCH
-router.patch('/', (req, res, next) => {
 
+router.get('/', (req, res, next) => {
+    // Create the sql that returns all users
+
+    /**
+     * If a specific query parameter is specified, return specific users in a specific way:
+     * api/users?country=denmark should return users that come from denmark
+     * api/users?sort=name&order=asc should return users sorted after the sort query parameter should be ordered after the order query parameter
+     * api/users?age=31 should return users that are 31
+     * api/users?min-age=29&max-age=31 should return users that are between 29 and 31
+     */
+});
+
+
+router.get('/:email', (req, res, next) => {
+    // get the email after api/users/some-email
+    console.log(req.params.email)
+    // Create the sql that returns a specific user matching the email
+});
+
+
+router.put('/:email', (req, res, next) => {
+    // Create the sql that updates information about a user matching the email
+});
+
+
+router.delete('/:email', (req, res, next) => {
+    // Create the sql that removes the user matching the email
 });
 
 
