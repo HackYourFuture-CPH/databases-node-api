@@ -40,14 +40,14 @@ Refer to [this](https://stackoverflow.com/questions/11928013/node-env-is-not-rec
 
 
 ## Database
-Add the relevant settings for the databse in the .env file.
+Add the relevant settings for the databse connection in the .env file.
 
 ## `Deployment`
 Navigate to project folder in your terminal:
 * On Linux or Mac run the following command: `npm run dev`
 * On Windows first refer to [Setting up on Windows] section and then run: `npm run dev`
 
-Now go to `http://localhost:5000/api/users` and you can hopefully see all users in the users table.
+Now go to `http://localhost:5000/api/users/test` and you can hopefully see all users in the users table.
 
 ## License
 
@@ -57,3 +57,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Hat tip to anyone whose code was used
 * Inspiration: [nephross](https://github.com/nephross)
+
+## Exercises
+Import the `database-node-api.sql` into your mysql workbench
+Check userRouter.js for the exercises for this homework!
